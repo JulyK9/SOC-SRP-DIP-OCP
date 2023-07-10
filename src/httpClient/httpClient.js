@@ -1,23 +1,24 @@
 // HttpClientInterface
 // fetch(endPoint, options): Promise<null>
 
-class HttpClient {
+export class HttpClient {
   #baseURL;
+  #tokenRepository;
 
-  constructor(baseURL) {
+  constructor(baseURL, tokenRepository) {
     this.#baseURL = baseURL;
+    this.#tokenRepository = tokenRepository;
   }
 
   fetch(endPoint, options = {}) {
     const optionsWithAuth = {
       ...options,
       headers: {
+        'Content-Type': 'application/json',
         ...options.headers,
-        Authorization: endPoint === 'signin' ? 'ATT' : undefined,
+        Authorization: `Bearer ${this.#tokenRepository.get()}`,
       },
     };
     return window.fetch(this.#baseURL + endPoint, optionsWithAuth);
   }
 }
-
-export const httpClient = new HttpClient();
