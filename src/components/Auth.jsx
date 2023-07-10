@@ -17,6 +17,7 @@ const Auth = () => {
     }));
   };
 
+  // AuthService auth에 관한 기능을 처리하는 모듈 => class 형태로
   const signin = () => {};
   const signup = () => {};
   const logout = () => {};
