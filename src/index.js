@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { AuthService } from './service/AuthService';
-import { LocalTokenRepository } from './repository/localTokenRepository';
 import { HttpClient } from './httpClient/httpClient';
+import { LocalTokenRepository } from './repository/localTokenRepository';
+import { AuthService } from './service/AuthService';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
