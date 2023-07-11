@@ -16,10 +16,10 @@ export class AuthService {
     // http requset
     const response = await this.#httpClient.fetch('auth/signin', {
       method: 'POST',
-      body: {
+      body: JSON.stringify({
         email,
         password,
-      },
+      }),
     });
 
     // token get, save
@@ -31,15 +31,11 @@ export class AuthService {
   async signup(email, password) {
     const response = await this.#httpClient.fetch('auth/signup', {
       method: 'POST',
-      body: {
+      body: JSON.stringify({
         email,
         password,
-      },
+      }),
     });
-
-    const { access_token } = await response.json();
-
-    this.#tokenRepository.save(access_token);
   }
 
   async logout() {
