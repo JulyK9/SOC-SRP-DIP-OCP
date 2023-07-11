@@ -6,13 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { HttpClient } from './httpClient/httpClient';
 import { LocalTokenRepository } from './repository/localTokenRepository';
 import { AuthService } from './service/AuthService';
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+import { AuthProvider } from './context/AuthContext';
 
 // bootStrap: 처음에 돌아가기 위한 일련의 준비 과정들, 분산되어 있으면 불리함
 // DI
@@ -22,6 +16,15 @@ const httpClient = new HttpClient(
   tokenRepository
 );
 const authService = new AuthService(httpClient, tokenRepository);
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <AuthProvider authService={authService}>
+      <App />
+    </AuthProvider>
+  </React.StrictMode>
+);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
